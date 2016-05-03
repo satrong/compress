@@ -7,8 +7,8 @@ const uglify = require('gulp-uglify');
 //var watch = require('gulp-watch');
 const concat = require('gulp-concat');
 
-const scriptsPath = "E:\\source\\Scripts\\";
-const scriptsDest = "E:\\source\\Scripts\\min\\";
+const scriptsPath = "E:\\source-code\\YLPT\\Project\\WebGame\\OfficialCash\\CashWebSite\\Scripts\\";
+const scriptsDest = "E:\\source-code\\YLPT\\Project\\WebGame\\OfficialCash\\CashWebSite\\Scripts\\min\\";
 
 const argv = process.argv.slice(2);
 
@@ -16,7 +16,7 @@ const argv = process.argv.slice(2);
 if (/^data\..+/i.test(argv[0])) {
     let dataFilename = argv[0].match(/\.(.+)$/)[1];
     try {
-        var dataFilePath = path.join(scriptsPath, "official/data");
+        var dataFilePath = path.join(scriptsPath, "official/data/");
         var files = fs.readdirSync(dataFilePath);
         files.forEach(item => {
             gulp.task('data.' + item.replace(/\..+$/, ''), () => {
@@ -27,6 +27,7 @@ if (/^data\..+/i.test(argv[0])) {
         });
     } catch (err) {
         console.log("读取data文件列表失败");
+		throw err;
     }
 }
 
